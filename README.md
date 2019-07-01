@@ -1,2 +1,7 @@
 # Category_Weak
 通过动态关联对象，给Category添加weak属性
+
+###
+我们知道iOS的Category是不能添加ivar的，所以当给Category添加属性时都使用了runtime的objc_setAssociatedObject 方法。
+但是objc_AssociationPolicy 并不支持weak属性，那怎么给Category加一个weak的属性呢？
+答案就是定义一个block来返回weak对象，然后在dealloc函数中通过block来回调weak对象的析构函数。
